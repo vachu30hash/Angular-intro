@@ -1,0 +1,149 @@
+<div class="container" *ngIf="logform">
+  <div class="card">
+    <div class="hearder">
+        <label class="signInLabel">Sign In</label>
+        <P>Enter your employe id and password below to login</P>
+    </div>
+    
+    <div class="form-group">
+      <label for="Id">Employee Code</label>
+      <input class="form-control" [(ngModel)]="employeeid" (input)="onchange(0)" placeholder="Enter employee id"/>
+      <small style="color: red">{{ errorEmpId }}</small>
+    </div>
+
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input type="password" class="form-control"  [(ngModel)]="password" (input)="onchange(4)" placeholder="Password"/>
+      <small style="color: red">{{ errorPassword }}</small>
+    </div>
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="text-center " >
+                <label>Update your password</label>&nbsp;<a (click)="toggle()" class="text-success">Click Here</a>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="text-center">
+                <button class="btn btn-primary" (click)="login()">Login</button>
+              </div>
+        </div>
+    </div>
+  </div>
+</div>
+
+<div class="container" *ngIf="!logform">
+  <div class="card">
+    <div class="hearder">
+        <label class="signInLabel">Update Password</label>
+        <P>Enter your employe id and password and confirm password below to details</P>
+    </div>
+    <div class="form-group">
+      <label>Employee ID</label>
+      <input type="text" class="form-control" [(ngModel)] = "employeeid" (input)="onchange(0)" placeholder="Enter employee id"/>
+      <small style="color: red">{{ errorEmpId }}</small>
+    </div>
+    <div class="form-group">
+      <label for="password">Current Password</label>
+      <input type="password" class="form-control" [(ngModel)] = "currentPassword" (input)="onchange(1)" placeholder="Enter current password"/>
+      <small style="color: red">{{ errorCurrentPassword }}</small>
+    </div>
+    <div class="form-group">
+      <label>New Password</label>
+      <input type="password" class="form-control" [(ngModel)] = "newPassword"  (input)="onchange(2)" placeholder="Enter new Password" />
+      <small style="color: red">{{ errorNewPassword }}</small>
+    </div>
+    <div class="form-group">
+      <label>Retype new Password</label>
+      <input type="password" class="form-control" [(ngModel)] = "retypenewPassword"  (input)="onchange(3)" placeholder="Enter retype newPassword" />
+      <small style="color: red">{{ errorRetypenewPassword }}</small>
+      
+       
+    </div>
+
+    <div class="text-center">
+      <button class="btn btn-primary" (click)="validate()">Submit</button>
+      </div>
+    <div class="text-center">
+      
+      <label>Back to login</label>&nbsp;<a (click)="toggle()" class="text-success">Click Here</a>
+    </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <body>
+<div class="login">
+
+    <h1 class=" text-center">SIGN IN</h1>
+
+    <form class="needs-validation">
+        <div class="form-group was validated">
+            <label class="form-label" for="employee">Employee Code</label>
+            <input  class="form-control" type="employee" id="employee" required>
+            <div class="invalid-feedback">
+                Please enter your employee id 
+
+            </div>
+        </div>
+
+        <div class="form-group was validated">
+            <label class="form-label" for="password">Password</label>
+            <input class="form-control" type="password" id="password" required>
+            <div class="invalid-feedback">
+                Please enter your password
+
+            </div>
+        </div>
+
+        <input  class="btn btn-success w-100" type="Submit" value="Login">
+        
+</form>
+</div>
+
+</body> -->
+
+<!-- <body>
+
+    <div class="login">
+
+        <h1 class="text-center">SIGN IN</h1>
+        
+        <form class="needs-validation">
+            <div class="form-group was-validated">
+                <label class="form-label" for="email">Employee Code</label>
+                <input class="form-control" type="email" id="email" required>
+                <div class="invalid-feedback">
+                    
+                </div>
+            </div>
+            <div class="form-group was-validation">
+                <label class="form-label" for="password">Password</label>
+                <input class="form-control" type="password" id="password" required>
+                <div class="invalid-feedback">
+                    
+                </div>
+            </div>
+            
+            <input class="btn btn-success w-100" type="submit" value="Login">
+        </form>
+
+    </div>
+
+</body> -->
