@@ -39,13 +39,13 @@ export class LogService {
         'Content-Type':  'application/json'
         })
     }
-    return this.http.post("http://localhost:4567/users",obj,this.httpOptions);
+    return this.http.post("http://localhost:3004/users",obj,this.httpOptions);
   }
 
   //To check avalailability of mail id and username
 
   check(str:any):Observable<object>{
-    return this.http.get("http://localhost:4567/users?username"+str,this.httpOptions);
+    return this.http.get("http://localhost:3004/users?username"+str,this.httpOptions);
   }
 
 // to Login
@@ -57,7 +57,7 @@ export class LogService {
   
       })
     }
-    return this.http.get("http://localhost:4567/users");
+    return this.http.get("http://localhost:3004/users");
   }
 
   logout():void{
@@ -71,9 +71,11 @@ export class LogService {
   }
 
   getUserDetails(){
-    return this.http.get("http://localhost:4567/users").pipe(map( (data:any) => {
+    return this.http.get("http://localhost:3004/users").pipe(map( (data:any) => {
       return data
     }))
+
+    
   }
 
   updatePassword(newPassword: string): Observable<object> {
@@ -89,4 +91,20 @@ export class LogService {
     return this.http.put("http://localhost:4567/users", body, this.httpOptions);
   }
 
+
+  getData(employeeid: number, password:any): Observable<any> {
+    
+    const url = "http://nhsappchna6210.cscidp.net/rdb/api/login?ID="+employeeid+"&Password="+password;
+
+    return this.http.get<any>(url);
+
+  }
+
+  putData(employee:any): Observable<any> {
+    
+    const url = "http://nhsappchna6210.cscidp.net/rdb/api/employee"
+
+    return this.http.put<any>(url,employee);
+
+  }
 }

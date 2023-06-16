@@ -30,10 +30,10 @@ export class LoginComponent implements OnInit {
 
     
   ngOnInit(): void {
-      this.log.getUserDetails().subscribe( data => {
-        this.employeeDetails = data; 
-        this.userList=data;
-      })
+      // this.log.getUserDetails().subscribe( data => {
+      //   this.employeeDetails = data; 
+      //   this.userList=data;
+      // })
 
   }
   
@@ -42,6 +42,9 @@ export class LoginComponent implements OnInit {
     this.logform=this.logform?false:true;
     this.clear()
   }
+ submit(): void{
+  this.route.navigate(['/login']);
+ }
 clear(){
   this.errorEmpId ="";
   this.errorCurrentPassword ="";
@@ -62,55 +65,76 @@ clear(){
   this.errorEmpId ="";
   this.errorPassword ="";
    if(this.employeeid ==  null || this.employeeid == undefined || this.employeeid == "" ){
-      this.errorEmpId="Please enter the emp ID";
+      this.errorEmpId="Please enter the emp code";
    }
    if( this.password == null || this.password == undefined || this.password == "" ) {
        this.errorPassword="Please enter the password";
    }
    else{
-  let user= this.userList.filter((a)=>a.employeeid==this.employeeid)
-    if(user.length>0){
-        if(user[0].employeeid == this.employeeid && user[0].password == this.password){
-          console.log("vaild")
-              alert("login successfully")
-          // sessionStorage.setItem("username",response.user.username);
-          // sessionStorage.setItem("usertype",response.user.type);
-          // sessionStorage.setItem("token",response.accessToken);
-          // sessionStorage.setItem("employeeid",response.user.employeeid);
-          // this.log.username=response.user.username;
-          // this.log.usertype=response.user.type;
-          // this.log.token=response.accessToken;
-          this.route.navigate(['admin/home']);
+      this.log.getData(this.employeeid,this.password).subscribe((data)=>{
+        if(data&&data!=""){
+          alert("login successfully")
+          this.route.navigate(['/login']);
         }else{
-          alert("invaild credential")
-          console.log("invaild credential")
+          alert("not login")
         }
-    }else{
-      alert("invaild credential")
-      console.log("invaild employeeId/password")
-    }
+          console.log(data)
+      })
     }
  }
+
+ isNumberKey(evt:any){
+  var charCode = (evt.which) ? evt.which : evt.keyCode
+  return !(charCode > 31 && (charCode < 48 || charCode > 57));
+}
+
 validate(){
   
   this.errorEmpId ="";
   this.errorCurrentPassword ="";
   this.errorNewPassword ="";
   this.errorRetypenewPassword ="";
+
     if(this.employeeid ==  null || this.employeeid == undefined || this.employeeid == ""){
-      this.errorEmpId="Please enter the emp ID";
+      this.errorEmpId="Please enter the emp code";
     }
+    
      if(this.currentPassword == null || this.currentPassword == undefined || this.currentPassword == "") {
         this.errorCurrentPassword="Please enter the current password";
     }
      if(this.newPassword == null || this.newPassword == undefined || this.newPassword == "") {
-      this.errorNewPassword="Please enter the  NewPassword";
+      this.errorNewPassword="Please enter the  new password";
   }
-   if(this.retypenewPassword == null || this.retypenewPassword == undefined|| this.retypenewPassword == "") {
-    this.errorRetypenewPassword="Please enter the Retype newPassword ";
+    if(this.retypenewPassword == null || this.retypenewPassword == undefined|| this.retypenewPassword == "") {
+    this.errorRetypenewPassword="Please enter the retype newPassword ";
+
+    if(this.newPassword != this.retypenewPassword)
+
+    this.errorRetypenewPassword ="password not match";
+    }else{
+      let user={
+        "EmployeeCode":this.employeeid,
+        "Password":this.newPassword
+      }
+      this.log.putData(user).subscribe((data)=>{
+
+        // console.log("dmk",data){
+          if(data&&data!=""){
+        {
+          alert("submitted")
+        this.route.navigate(['/login'])
+        }}
+        else{
+          alert("Error")
+        }
+        console.log("dmk",data)
+      })
+
     }
-    else(this.newPassword != this.retypenewPassword)
-      this.errorRetypenewPassword ="password not match";
+  
+    
+    
+  
     
 }
 
@@ -139,6 +163,110 @@ onchange(n:any){
  
  
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

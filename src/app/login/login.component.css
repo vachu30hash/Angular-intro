@@ -9,7 +9,7 @@
   text-align: center;
 }
 .signInLabel{
-  font-size: 24px;
+  font-size: 18px;
   text-transform: uppercase;
 }
 .card {
@@ -40,6 +40,8 @@ label {
 .text-center {
   text-align: center;
   margin-top: 5px;
+  font-size: 17px;
+  color:green;
 }
 
 .btn-primary {
@@ -56,12 +58,45 @@ label {
   /* color: #28a745; */
   color: #007bff;
   cursor: pointer;
+  font-size: 17px;
 }
 
 .errors {
   color: red;
   margin-top: 10px;
 } 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
