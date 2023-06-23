@@ -24,6 +24,8 @@ export class LoginComponent implements OnInit {
   errorNewPassword?:string;
   retypenewPassword:string="";
   errorRetypenewPassword?:string;
+  loginForm: any;
+  submitForm: any;
   
   constructor(private log:LogService,private route:Router) { 
   }
@@ -108,27 +110,33 @@ validate(){
     if(this.retypenewPassword == null || this.retypenewPassword == undefined|| this.retypenewPassword == "") {
     this.errorRetypenewPassword="Please enter the retype newPassword ";
 
+    }else{
+      
     if(this.newPassword != this.retypenewPassword)
 
     this.errorRetypenewPassword ="password not match";
-    }else{
+    else{
       let user={
         "EmployeeCode":this.employeeid,
         "Password":this.newPassword
       }
-      this.log.putData(user).subscribe((data)=>{
+       this.log.putData(user).subscribe((data)=>{
 
-        // console.log("dmk",data){
-          if(data&&data!=""){
-        {
-          alert("submitted")
-        this.route.navigate(['/login'])
-        }}
-        else{
-          alert("Error")
-        }
-        console.log("dmk",data)
+      //  console.log("dmk",data)
+      //    if(data&&data!=""){
+      //    {
+      //     alert("submitted")
+      //   this.route.navigate(['/login'])
+      //    }}
+      //    else{
+      //      alert("Error")
+      //    }
+      //    console.log("dmk",data)
       })
+    }
+  
+     
+       
 
     }
   
